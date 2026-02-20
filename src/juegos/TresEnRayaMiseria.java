@@ -1,13 +1,14 @@
 package juegos;
 
+
 import java.util.Scanner;
 
-public class Juego3EnRaya {
+public class TresEnRayaMiseria {
     private Tablero tablero;
     private Jugador j1, j2;
     private Jugador turnoActual;
 
-    public Juego3EnRaya(String n1, char s1, String n2, char s2) {
+    public TresEnRayaMiseria(String n1, char s1, String n2, char s2) {
         this.tablero = new Tablero();
         this.j1 = new Jugador(n1, s1);
         this.j2 = new Jugador(n2, s2);
@@ -36,7 +37,8 @@ public class Juego3EnRaya {
             // Tras colocar ficha, comprobamos a ver si hay ganador
             if (tablero.hayGanador()) {
                 tablero.mostrar();
-                System.out.println("\n ¡FELICIDADES! " + turnoActual.getNombre() + " ha ganado.");
+                System.out.println("\n ¡ATENCIÓN! " + turnoActual.getNombre() + " ha formado una línea.");
+                System.out.println("HAS PERDIDO. La victoria es para el rival.");
                 finPartida = true;
             } else if (tablero.hayEmpate()) {
                 tablero.mostrar();
