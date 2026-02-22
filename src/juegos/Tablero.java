@@ -57,8 +57,14 @@ public class Tablero {
 				comprobarDiagonalPrincipal() || 
 				comprobarDiagonalInversa();
 	}
+	
+	public int getDimension() {
+		return dimension;
+	}
 
 	// --- MÉTODOS PRIVADOS ---
+
+
 
 	private boolean comprobarFilas() {
 		for (int i = 0; i < dimension; i++) {

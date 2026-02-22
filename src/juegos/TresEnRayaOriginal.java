@@ -1,55 +1,32 @@
 package juegos;
 
-import java.util.Scanner;
-
-public class TresEnRayaOriginal {
-    private Tablero tablero;
-    private Jugador j1, j2;
-    private Jugador turnoActual;
-
-    public TresEnRayaOriginal(String n1, char s1, String n2, char s2) {
-        this.tablero = new Tablero();
-        this.j1 = new Jugador(n1, s1);
-        this.j2 = new Jugador(n2, s2);
-        this.turnoActual = j1;
+public class TresEnRayaOriginal extends JuegoDeTablero {
+    
+    public TresEnRayaOriginal (String n1, char s1, String n2, char s2) {
+        super(n1, s1, n2, s2); 
     }
 
+
     public void iniciar() {
-        Scanner sc = new Scanner(System.in);
         boolean finPartida = false;
 
         while (!finPartida) {
-            tablero.mostrar();
-            System.out.println("\n Turno de " + turnoActual.getNombre() + " (" + turnoActual.getSimbolo() + ")");
-            
-            // Bucle para asegurar que el jugador pone una ficha válida
-            boolean fichaColocada = false;
-            while (!fichaColocada) {
-                System.out.print("Fila (1-3): ");
-                int f = sc.nextInt() - 1;
-                System.out.print("Columna (1-3): ");
-                int c = sc.nextInt() - 1;
-                
-                fichaColocada = tablero.colocarFicha(f, c, turnoActual.getSimbolo());
-            }
+        	//Cada uno de los turnos
+            tablero.mostrar();          
+            mostrarTurno();             
+            realizarJugadaManualmente(); 
 
-            // Tras colocar ficha, comprobamos a ver si hay ganador
+            // El hijo solo se encarga de aplicar su REGLAMENTO
             if (tablero.hayGanador()) {
                 tablero.mostrar();
                 System.out.println("\n ¡FELICIDADES! " + turnoActual.getNombre() + " ha ganado.");
                 finPartida = true;
             } else if (tablero.hayEmpate()) {
-                tablero.mostrar();
-                System.out.println("\n Empate. No quedan movimientos.");
+                System.out.println("\n Empate técnico. El tablero está lleno.");
                 finPartida = true;
             } else {
-                cambiarTurno();
+                cambiarTurno(); 
             }
         }
-        sc.close();
-    }
-
-    private void cambiarTurno() {
-        this.turnoActual = (turnoActual == j1) ? j2 : j1;
     }
 }
