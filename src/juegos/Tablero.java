@@ -4,6 +4,7 @@ package juegos;
 import java.util.Arrays;
 
 public class Tablero {
+	public static final char CASILLA_VACIA = '-';
 	private char[][] celdas;
 	private int dimension;
 
@@ -15,7 +16,7 @@ public class Tablero {
 
 	private void inicializar() {
 		for (int i = 0; i < dimension; i++) {
-			Arrays.fill(celdas[i], '-');
+			Arrays.fill(celdas[i], CASILLA_VACIA);
 		}
 	}
 
@@ -34,18 +35,35 @@ public class Tablero {
 			System.out.println("Error: Coordenadas fuera de rango.");
 			return false;
 		}
-		if (celdas[f][c] != '-') {
+		if (celdas[f][c] != CASILLA_VACIA) {
 			System.out.println("Error: Casilla ocupada.");
 			return false;
 		}
 		celdas[f][c] = simbolo;
 		return true;
 	}
+	
+	public char getFicha(int f, int c) {
+	    if (f >= 0 && f < dimension && c >= 0 && c < dimension) {
+	        return this.celdas[f][c];
+	    }
+	    //Si no es válida retornamos otra cosa, algo que nunca vaya a ser una ficha de jugador, como un espacio
+	    return ' ';
+	}
+	
+	public void vaciarCasilla(int f, int c) {
+	    if (f >= 0 && f < dimension && c >= 0 && c < dimension) {
+	        this.celdas[f][c] = CASILLA_VACIA;
+	    }
+	}
+
 
 	public boolean hayEmpate() {
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
-                if (celdas[i][j] == '-') return false;
+                if (celdas[i][j] == CASILLA_VACIA) {
+                	return false;
+                }
             }
         }
         return true;

@@ -18,11 +18,10 @@ public class TresEnRayaOriginal extends JuegoDeTablero {
 
             // El hijo solo se encarga de aplicar su REGLAMENTO
             if (tablero.hayGanador()) {
-                tablero.mostrar();
-                System.out.println("\n ¡FELICIDADES! " + turnoActual.getNombre() + " ha ganado.");
+                anunciarGanador(turnoActual);
                 finPartida = true;
             } else if (tablero.hayEmpate()) {
-                System.out.println("\n Empate técnico. El tablero está lleno.");
+                anunciarEmpate();
                 finPartida = true;
             } else {
                 cambiarTurno(); 

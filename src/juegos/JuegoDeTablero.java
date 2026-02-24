@@ -20,6 +20,21 @@ public class JuegoDeTablero {
         System.out.println("\n---------------------------------");
         System.out.println(">>> Turno de " + turnoActual.getNombre());
     }
+    
+    protected void anunciarGanador(Jugador ganador) {
+        tablero.mostrar();
+        System.out.println("\n=================================");
+        System.out.println("¡FIN DE LA PARTIDA!");
+        System.out.println("El ganador es: " + ganador.getNombre().toUpperCase());
+        System.out.println("=================================");
+    }
+
+    protected void anunciarEmpate() {
+        tablero.mostrar();
+        System.out.println("\n=================================");
+        System.out.println("FIN DE LA PARTIDA: Empate técnico.");
+        System.out.println("=================================");
+    }
 
     protected void realizarJugadaManualmente() {
         boolean fichaColocada = false;

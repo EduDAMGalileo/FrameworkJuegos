@@ -18,12 +18,13 @@ public class TresEnRayaMiseria extends JuegoDeTablero {
 
             // El hijo solo se encarga de aplicar su REGLAMENTO
             if (tablero.hayGanador()) {
-                tablero.mostrar();
-                cambiarTurno();
-                System.out.println("\n ¡FELICIDADES! " + turnoActual.getNombre() + " ha ganado.");
+                System.out.println("\n¡ATENCIÓN! " + turnoActual.getNombre() + " ha hecho 3 en raya y PIERDE.");
+                // Pasamos el turno al rival para que él sea el ganador
+                cambiarTurno(); 
+                anunciarGanador(turnoActual); 
                 finPartida = true;
             } else if (tablero.hayEmpate()) {
-                System.out.println("\n Empate técnico. El tablero está lleno.");
+                anunciarEmpate();
                 finPartida = true;
             } else {
                 cambiarTurno(); 
